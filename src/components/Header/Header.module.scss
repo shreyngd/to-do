@@ -6,10 +6,16 @@
     align-items: center;
     justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 0 10px;
     .routes{
 
     }
     .search{
 
     }
+}
+
+.appDrawer{
+    background-color: var(--color-surface) !important;
+    top: 60px !important;
 }

@@ -9,7 +9,7 @@ const ThemeToggle = () => {
         setTheme(newTheme)
         changeTheme(newTheme)
     }
-    return (<div>
+    return (<div className={classes.toggleContainer}>
         <input type="checkbox" className={classes.checkbox} id="checkbox" onClick={toggleTheme} checked={theme === THEME.DARK} />
         <label htmlFor="checkbox" className={classes.label}>
             <i className="fas fa-moon"></i>
