@@ -1,0 +1,64 @@
+.addTodoBox{
+    border: 1px solid grey;
+    border-radius: 8px;
+    
+    .inputContainer{
+        display: flex;
+        padding: 8px 8px 0 8px;
+        gap: 8px;
+    }
+
+    .input{
+        background-color: var(--color-surface-dark);
+        border: none;
+        color: var(--color-solid);
+        flex: 1;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 21px;
+        outline: none;
+        ::placeholder{
+            color: #ababab;
+        }
+    }
+    .addTodoBoxMain{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .addTodoBoxSecondary{
+        height: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: height 0.1s ease-in;
+        &.fullHeight{
+            height: 155px;
+        }
+    }
+    .textAreaContainer{
+        display: flex;
+        width: 100%;
+        padding: 8px;
+        .textarea{
+            flex: 1;
+            font-family: inherit;
+            font-size: 14px;
+            line-height: 19px;
+            color: var(--color-solid);
+            outline: none !important;
+            border: none;
+            resize: none;
+            background: var(--color-surface-dark);
+            ::placeholder{
+                color: #ababab;
+            }
+            
+        }
+    }
+    .options{
+        display: flex;
+        padding: 8px;
+        justify-content: space-between;
+    }
+}

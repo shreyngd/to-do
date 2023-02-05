@@ -23,13 +23,10 @@ const Header = () => {
                 <div className={classes.routes}>
                     <div>
                         <Hamburger toggled={isOpen} toggle={setOpen} size={20} />
-
                     </div>
-
                 </div>
                 <div className={classes.search}>
                     <ThemeToggle></ThemeToggle>
-
                 </div>
 
             </div>

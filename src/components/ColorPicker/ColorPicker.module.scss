@@ -1,0 +1,13 @@
+.main{
+    display: flex;
+    gap: 8px;
+    .colorDiv{
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        &.selected{
+            border: 2px solid gray;
+            padding: 1px
+        }
+    }
+}
