@@ -45,10 +45,52 @@ export const useGreeting = () => {
 
     return greeting;
 }
-
-export const COLORS_MAP: Record<string, string> = {
-    'DEFAULT': document.documentElement.style.getPropertyValue('--color-surface'),
-    'ORANGE': '#F58549',
-    'RED': '#A31621',
-    'GREEN': '#7A9B76',
+export enum Priority {
+    LOW = 'low',
+    MEDIUM = 'medium',
+    HIGH = 'high'
 }
+
+
+export type PriorityObj = {
+    colorName: string
+    name: Priority
+}
+
+export type DueTimeObj = {
+    text: string,
+    time: number
+}
+
+export const COLORS_ARR: Array<PriorityObj> = [
+    { colorName: 'low', name: Priority.LOW, }, { colorName: 'medium', name: Priority.MEDIUM },
+    { colorName: 'high', name: Priority.HIGH, }
+]
+
+export const DUE_TIME_LIST: Array<DueTimeObj> = [
+    {
+        text: '30 min',
+        time: 30 * 60 * 1000
+    },
+    {
+        text: '1 hr',
+        time: 60 * 60 * 1000
+    },
+    {
+        text: '2 hrs',
+        time: 2 * 60 * 60 * 1000
+    },
+    {
+        text: '6 hrs',
+        time: 6 * 60 * 60 * 1000
+    },
+    {
+        text: '12 hrs',
+        time: 12 * 60 * 60 * 1000
+    },
+    {
+        text: '1 day',
+        time: 24 * 60 * 60 * 1000
+    }
+]
+

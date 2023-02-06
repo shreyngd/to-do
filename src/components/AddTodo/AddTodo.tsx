@@ -3,14 +3,16 @@ import classes from './AddTodo.module.scss';
 import AddItem from '../../assets/images/plus-square.svg'
 import classNames from 'classnames';
 import ColorPicker from '../ColorPicker/ColorPicker';
-import { COLORS_MAP } from '../../utils';
+import { DueTimeObj, DUE_TIME_LIST, PriorityObj } from '../../utils';
+import ChipButton from '../ChipButton/ChipButton';
 
 const AddTodo = () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const boxRef = useRef<HTMLDivElement>(null);
     const [show, setshow] = useState(false);
+    const [selectTime, setSelectTime] = useState<DueTimeObj | null>(null);
 
-    const [colorLabel, setColorLabel] = useState('');
+    const [colorLabel, setColorLabel] = useState<PriorityObj | null>(null);
 
     useEffect(() => {
         if (show === true) {
@@ -18,8 +20,8 @@ const AddTodo = () => {
         }
     }, [show])
 
+
     useEffect(() => {
-        console.log(boxRef);
         const handleClickOutside = (event: MouseEvent) => {
             if (boxRef.current && !boxRef.current.contains(event.target as Node)) {
                 setshow(false)
@@ -36,9 +38,19 @@ const AddTodo = () => {
         setshow(true);
     }
 
+    const handleTimeSelect = (dueTimeObj: DueTimeObj) => {
+        console.log(dueTimeObj)
+        if (selectTime && selectTime.text === dueTimeObj.text) {
+            setSelectTime(null);
+        } else {
+            setSelectTime(dueTimeObj)
+        }
+
+    }
+
 
     return <div className={classes.addTodoBox} onClick={handleClick} ref={boxRef} style={{
-        background: COLORS_MAP[colorLabel]
+        background: `var(--color-priority-${colorLabel?.colorName})`
     }}>
         <div className={classes.addTodoBoxMain}>
             <div className={classes.inputContainer}>
@@ -52,8 +64,11 @@ const AddTodo = () => {
                     <textarea className={classes.textarea} placeholder="Add a description" onFocus={handleClick} rows={5}></textarea>
                 </div>
                 <div className={classes.options}>
-                    <div>due date</div>
-                    <div><ColorPicker changeColor={(color) => setColorLabel(color)} /></div>
+                    <div className={classes.dueTime}>
+                        <div className={classes.dueText}>Due in:</div>
+                        <div className={classes.timeChips}>{DUE_TIME_LIST.map(el => <ChipButton value={el.text} onClick={() => handleTimeSelect(el)} key={el.text} selected={selectTime?.text} />)}</div>
+                    </div>
+                    <div><ColorPicker changeColor={(color: PriorityObj | null) => setColorLabel(color)} /></div>
 
                 </div>
             </div>

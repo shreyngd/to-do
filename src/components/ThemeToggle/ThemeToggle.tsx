@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { changeTheme, THEME } from "../../theme";
 import classes from './ThemeToggle.module.scss'
 
 const ThemeToggle = () => {
     const [theme, setTheme] = useState(THEME.DARK);
+    useEffect(() => {
+        changeTheme(THEME.DARK)
+    }, [])
     const toggleTheme = () => {
         const newTheme = theme === THEME.DARK ? THEME.LIGHT : THEME.DARK
         setTheme(newTheme)

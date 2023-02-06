@@ -24,9 +24,9 @@ Deployment is done on github pages ;;;; and app is deployed **[here](https://shr
 
 # Features
 
- - [ ]  Add a new todo list item
- - [ ]  Remove a todo list item
- - [ ]  Edit a todo list item
+ - [ ] Add a new todo list item
+ - [ ] Remove a todo list item
+ - [ ] Edit a todo list item
  - [ ] Expand a todo list item to show a detailed description
  - [ ] Favourite a todo list item
  - [ ] Animations on Add, Remove, Complete or Favourite

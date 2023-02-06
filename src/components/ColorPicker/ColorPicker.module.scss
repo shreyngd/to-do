@@ -1,13 +1,29 @@
 .main{
     display: flex;
     gap: 8px;
+    align-items: center;
     .colorDiv{
         height: 30px;
         width: 30px;
         border-radius: 50%;
+        &.low{
+            background-color: var(--color-priority-low);
+        }
+        &.medium{
+            background-color: var(--color-priority-medium);
+
+        }
+        &.high{
+            background-color: var(--color-priority-high);
+        }
         &.selected{
-            border: 2px solid gray;
+            border: 2px solid var(--color-border-priority);
             padding: 1px
         }
+    }
+    .text{
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 19px;    
     }
 }

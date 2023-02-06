@@ -1,6 +1,8 @@
 .addTodoBox{
     border: 1px solid grey;
     border-radius: 8px;
+    color: var(--color-solid);
+    transition: background-color 0.15s ease-in;
     
     .inputContainer{
         display: flex;
@@ -11,14 +13,14 @@
     .input{
         background-color: var(--color-surface-dark);
         border: none;
-        color: var(--color-solid);
         flex: 1;
         font-weight: 600;
         font-size: 16px;
         line-height: 21px;
+        color: inherit;
         outline: none;
-        ::placeholder{
-            color: #ababab;
+        &::placeholder{
+            color: var(--color-placeholder)
         }
     }
     .addTodoBoxMain{
@@ -33,7 +35,7 @@
         flex-direction: column;
         transition: height 0.1s ease-in;
         &.fullHeight{
-            height: 155px;
+            height: 160px;
         }
     }
     .textAreaContainer{
@@ -45,13 +47,13 @@
             font-family: inherit;
             font-size: 14px;
             line-height: 19px;
-            color: var(--color-solid);
+            color: inherit;
             outline: none !important;
             border: none;
             resize: none;
             background: var(--color-surface-dark);
-            ::placeholder{
-                color: #ababab;
+            &::placeholder{
+                color: var(--color-placeholder)
             }
             
         }
@@ -60,5 +62,20 @@
         display: flex;
         padding: 8px;
         justify-content: space-between;
+        background-color: var(--color-surface);
+        align-items: center;
+        .dueText{
+            font-size: 14px;
+            line-height: 19px;
+            font-weight: 600;
+        }
+        .dueTime{
+            display: flex;
+            gap: 8px;
+        }
+        .timeChips{
+            display: flex;
+            gap: 4px;
+        }
     }
 }

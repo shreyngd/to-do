@@ -1,24 +1,26 @@
 import classes from './ColorPicker.module.scss'
-import { COLORS_MAP } from '../../utils';
-import { useState } from 'react';
+import { COLORS_ARR, PriorityObj } from '../../utils';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
-const ColorPicker = ({ changeColor = (color: string) => { } }) => {
-    const [selected, setSelected] = useState<string>('DEFAULT');
+const ColorPicker = ({ changeColor = (color: PriorityObj | null) => { } }) => {
+    const [selected, setSelected] = useState<PriorityObj | null>(null);
 
-    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (typeof e.currentTarget.dataset.color !== 'undefined') {
-            setSelected(e.currentTarget.dataset.color)
-            changeColor(e.currentTarget.dataset.color)
+    useEffect(() => {
+        changeColor(selected)
+    }, [selected, changeColor])
+
+    const handleClick = (obj: PriorityObj) => {
+        if (selected?.name === obj.name) {
+            setSelected(null)
+        } else {
+            setSelected(obj)
         }
-
-
     }
     return <div className={classes.main}>
-        {Object.keys(COLORS_MAP).map(el => {
-            return <div className={classNames(classes.colorDiv, { [classes.selected]: selected === el })} key={el} style={{
-                background: COLORS_MAP[el]
-            }} data-color={el} onClick={handleClick}></div>
+        <div className={classes.text}>Priority:</div>
+        {COLORS_ARR.map((priority: PriorityObj) => {
+            return <div className={classNames(classes.colorDiv, { [classes.selected]: selected?.name === priority.name }, classes[priority.colorName])} key={priority.name} onClick={() => handleClick(priority)}></div>
         })}
 
     </div>
