@@ -1,13 +1,14 @@
-.chipBtn{
-    border: 1px solid var(--color-solid);
-    background: none;
-    font-weight: bold;
-    padding: 2px 5px;
-    border-radius: 24px;
-    color:inherit;
-    cursor: pointer;
-    &.selected{
-        border-color: var(--color-border-priority);
-        color: var(--color-border-priority);
-    }
+.chipBtn {
+  border: 1px solid var(--color-solid);
+  background: none;
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 24px;
+  color: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  &.selected {
+    border-color: var(--color-border-priority);
+    color: var(--color-border-priority);
+  }
 }

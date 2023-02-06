@@ -1,4 +1,5 @@
 import AddTodo from '../../components/AddTodo/AddTodo';
+import Display from '../../components/Display/Display';
 import { useGreeting } from '../../utils';
 import classes from './Dashboard.module.scss';
 
@@ -17,7 +18,7 @@ const Dashboard: React.FC = () => {
                 <AddTodo></AddTodo>
             </div>
             <div>
-                Display
+                <Display />
             </div>
         </div>
 

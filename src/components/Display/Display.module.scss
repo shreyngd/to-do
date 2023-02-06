@@ -1,0 +1,49 @@
+.listTransitionEnter {
+  /*We give the list the initial dimension of the list button*/
+  transform: translateY(-100px);
+}
+/* This is where we can add the transition*/
+.listTransitionEnterActive {
+  transform: translateY(0);
+  transition: transform 400ms ease-in;
+}
+/* This fires as soon as the this.state.showList is false */
+
+/* fires as element leaves the DOM*/
+.listTransitionExitActive {
+  transform: translateY(3000);
+}
+
+.todoList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  .todoItem {
+    height: 40px;
+    border: 1px solid var(--color-placeholder);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    .info {
+      display: flex;
+      padding: 8px;
+      justify-content: space-between;
+      .titleMain {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .titleText {
+          font-size: 14px;
+          line-height: 19px;
+          font-weight: bold;
+        }
+      }
+      .optionsMain {
+        display: flex;
+        gap: 8px;
+      }
+    }
+  }
+}

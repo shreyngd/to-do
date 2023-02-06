@@ -1,0 +1,17 @@
+.prioAnim {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  &.low {
+    background-color: var(--color-priority-low);
+  }
+  &.high {
+    background-color: var(--color-priority-high);
+  }
+  &.medium {
+    background-color: var(--color-priority-medium);
+  }
+  &.default {
+    background-color: var(--color-placeholder);
+  }
+}

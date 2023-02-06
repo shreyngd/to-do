@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import classes from './ChipButton.module.scss';
 
-const ChipButton = ({ onClick = () => { }, value = '', selected = '' }) => {
+const ChipButton = ({ onClick = () => { }, value = '', selected = false }) => {
     return <button type='button' className={classNames(classes.chipBtn, {
-        [classes.selected]: selected === value
+        [classes.selected]: selected
     })} onClick={onClick}>{value}</button>
 }
 
