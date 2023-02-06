@@ -1,5 +1,6 @@
-.todoApp{
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--color-surface-secondary);
+.todoApp {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-surface-secondary);
+  overflow: auto;
 }

@@ -1,17 +1,52 @@
 .listTransitionEnter {
-  /*We give the list the initial dimension of the list button*/
-  transform: translateY(-100px);
+  transform: translateY(-73px);
 }
-/* This is where we can add the transition*/
 .listTransitionEnterActive {
+  transform: translateY(0);
+  transition: transform 200ms ease-in;
+}
+
+.listTransitionExit {
   transform: translateY(0);
   transition: transform 400ms ease-in;
 }
-/* This fires as soon as the this.state.showList is false */
 
-/* fires as element leaves the DOM*/
 .listTransitionExitActive {
-  transform: translateY(3000);
+  transform: translateY(3000px);
+}
+
+.strikeThroughEnter {
+  position: absolute;
+  width: 0;
+  height: 2px;
+  top: 11px;
+}
+.strikeThroughEnterActive {
+  width: 100%;
+  transition: width 200ms ease-in;
+}
+
+.strikeThroughEnterDone {
+  position: absolute;
+  width: 0;
+  height: 2px;
+  top: 11px;
+  width: 100%;
+}
+.strikeThroughExit {
+  position: absolute;
+  width: 0;
+  height: 2px;
+  top: 11px;
+  width: 100%;
+}
+
+.strikeThroughExitActive {
+  position: absolute;
+  width: 0;
+  height: 2px;
+  top: 11px;
+  transition: width 200ms ease-in;
 }
 
 .todoList {
@@ -34,6 +69,11 @@
         display: flex;
         align-items: center;
         gap: 8px;
+        position: relative;
+        .strike {
+          border-radius: 2px;
+          background-color: var(--color-solid);
+        }
         .titleText {
           font-size: 14px;
           line-height: 19px;
@@ -43,6 +83,13 @@
       .optionsMain {
         display: flex;
         gap: 8px;
+        .btn {
+          border: none;
+          background: none;
+          color: inherit;
+          outline: none;
+          cursor: pointer;
+        }
       }
     }
   }

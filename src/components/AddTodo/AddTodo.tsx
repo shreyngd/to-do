@@ -3,22 +3,37 @@ import classes from './AddTodo.module.scss';
 import AddItem from '../../assets/images/plus-square.svg'
 import classNames from 'classnames';
 import ColorPicker from '../ColorPicker/ColorPicker';
-import { DueTimeObj, DUE_TIME_LIST, PriorityObj } from '../../utils';
+import { COLORS_ARR, DueTimeObj, DUE_TIME_LIST, PriorityObj } from '../../utils';
 import ChipButton from '../ChipButton/ChipButton';
-import { add, ToDo } from '../../store/todoSlice';
+import { add, ToDo, updateTodo } from '../../store/todoSlice';
 import { v4 } from 'uuid'
 import { useAppDispatch } from '../../store/hooks';
 
-const AddTodo = () => {
+interface ToDoProps {
+    editMode?: boolean;
+    todoObject?: ToDo | null;
+    updateDone?: () => void
+}
+
+const AddTodo = ({ editMode = false, todoObject, updateDone = () => { } }: ToDoProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const boxRef = useRef<HTMLDivElement>(null);
-    const [show, setshow] = useState(false);
+    const [show, setshow] = useState(editMode);
     const [selectTime, setSelectTime] = useState<DueTimeObj | null>(null);
-
     const [colorLabel, setColorLabel] = useState<PriorityObj | null>(null);
 
     const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        if (editMode && todoObject && inputRef.current && textareaRef.current) {
+            inputRef.current.value = todoObject.title || '';
+            textareaRef.current.value = todoObject.description || ''
+            setColorLabel(COLORS_ARR.find(el => el.name === todoObject.priority) || null)
+        }
+
+
+    }, [editMode, todoObject])
 
     useEffect(() => {
         if (show === true) {
@@ -30,21 +45,29 @@ const AddTodo = () => {
     const addTodo = useCallback(() => {
         if (inputRef.current?.value || textareaRef.current?.value) {
             const newTodo: ToDo = {
-                id: v4(),
+                id: editMode && todoObject ? todoObject.id : v4(),
                 title: inputRef.current?.value || '',
                 description: textareaRef.current?.value || '',
                 endTime: Date.now() + (selectTime ? selectTime.time : 0),
                 priority: colorLabel?.name || null,
-                isFavourite: false,
-                isComplete: false
+                isFavourite: todoObject ? todoObject?.isFavourite : false,
+                isComplete: todoObject ? todoObject?.isComplete : false
             }
-            dispatch(add(newTodo));
+            if (editMode && todoObject) {
+                dispatch(updateTodo({ id: todoObject?.id, data: newTodo }));
+                updateDone()
+            }
+            else dispatch(add(newTodo));
             if (inputRef.current) inputRef.current.value = '';
             if (textareaRef.current) textareaRef.current.value = '';
 
-        }
 
-    }, [colorLabel, dispatch, selectTime, inputRef, textareaRef])
+
+        }
+        setColorLabel(null)
+        setSelectTime(null)
+
+    }, [editMode, todoObject, selectTime, colorLabel?.name, dispatch, updateDone])
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -53,12 +76,11 @@ const AddTodo = () => {
                 addTodo()
             }
         }
-
         document.addEventListener('mousedown', handleClickOutside)
 
         return () => document.removeEventListener('mousedown', handleClickOutside);
 
-    }, [boxRef, addTodo])
+    }, [boxRef, addTodo, setColorLabel, setSelectTime])
 
     const handleClick = () => {
         setshow(true);
@@ -75,7 +97,7 @@ const AddTodo = () => {
 
     return (
         <div className={classes.addTodoBox} onClick={handleClick} ref={boxRef} style={{
-            background: `var(--color-priority-${colorLabel?.colorName})`
+            background: colorLabel ? `var(--color-priority-${colorLabel?.colorName})` : ''
         }}>
             <div className={classes.addTodoBoxMain}>
                 <div className={classes.inputContainer}>
@@ -91,9 +113,11 @@ const AddTodo = () => {
                     <div className={classes.options}>
                         <div className={classes.dueTime}>
                             <div className={classes.dueText}>Due in:</div>
-                            <div className={classes.timeChips}>{DUE_TIME_LIST.map(el => <ChipButton value={el.text} onClick={() => handleTimeSelect(el)} key={el.text} selected={selectTime?.text === el.text} />)}</div>
+                            <div className={classes.timeChips}>{DUE_TIME_LIST.map(el => (
+                                <ChipButton value={el.text} onClick={() => handleTimeSelect(el)} key={el.text} selected={selectTime?.text === el.text} />
+                            ))}</div>
                         </div>
-                        <div><ColorPicker changeColor={(color: PriorityObj | null) => setColorLabel(color)} /></div>
+                        <div><ColorPicker changeColor={(color: PriorityObj | null) => setColorLabel(color)} selected={colorLabel} /></div>
 
                     </div>
                 </div>

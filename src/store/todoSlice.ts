@@ -19,6 +19,12 @@ const initialState: ToDoList = {
     list: []
 }
 
+type UpdateObjectPayload = {
+    id: string;
+    data: ToDo
+
+}
+
 export const todoSlice = createSlice({
     name: 'todoList',
     initialState,
@@ -37,11 +43,20 @@ export const todoSlice = createSlice({
         markFavourite: (state, action: PayloadAction<string>) => {
             const index = state.list.findIndex(el => el.id === action.payload);
             state.list[index].isFavourite = !state.list[index].isFavourite
+
+        },
+        markComplete: (state, action: PayloadAction<string>) => {
+            const index = state.list.findIndex(el => el.id === action.payload);
+            state.list[index].isComplete = !state.list[index].isComplete
+        },
+        updateTodo: (state, action: PayloadAction<UpdateObjectPayload>) => {
+            const index = state.list.findIndex(el => el.id === action.payload.id);
+            state.list[index] = action.payload.data
         }
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { add, remove, markFavourite } = todoSlice.actions
+export const { add, remove, markFavourite, markComplete, updateTodo } = todoSlice.actions
 
 export default todoSlice.reducer
