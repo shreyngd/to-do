@@ -44,11 +44,19 @@ const AddTodo = ({ editMode = false, todoObject, updateDone = () => { } }: ToDoP
 
     const addTodo = useCallback(() => {
         if (inputRef.current?.value || textareaRef.current?.value) {
+            let endTime = Date.now() + (selectTime ? selectTime.time : 0)
+            if (editMode && selectTime === null) {
+                endTime = todoObject?.endTime || Date.now()
+            }
+            if (editMode && selectTime && todoObject && todoObject.endTime) {
+                endTime = todoObject.endTime + selectTime.time
+
+            }
             const newTodo: ToDo = {
                 id: editMode && todoObject ? todoObject.id : v4(),
                 title: inputRef.current?.value || '',
                 description: textareaRef.current?.value || '',
-                endTime: Date.now() + (selectTime ? selectTime.time : 0),
+                endTime,
                 priority: colorLabel?.name || null,
                 isFavourite: todoObject ? todoObject?.isFavourite : false,
                 isComplete: todoObject ? todoObject?.isComplete : false
@@ -112,7 +120,7 @@ const AddTodo = ({ editMode = false, todoObject, updateDone = () => { } }: ToDoP
                     </div>
                     <div className={classes.options}>
                         <div className={classes.dueTime}>
-                            <div className={classes.dueText}>Due in:</div>
+                            <div className={classes.dueText}>{editMode ? 'Add Time:' : 'Due in:'}</div>
                             <div className={classes.timeChips}>{DUE_TIME_LIST.map(el => (
                                 <ChipButton value={el.text} onClick={() => handleTimeSelect(el)} key={el.text} selected={selectTime?.text === el.text} />
                             ))}</div>
