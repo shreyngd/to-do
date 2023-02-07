@@ -1,17 +1,16 @@
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import classes from "./Display.module.scss";
 import classNames from "classnames";
 import Priority from "../Priority/Priority";
 import ChipButton from "../ChipButton/ChipButton";
-import { markComplete, markFavourite, remove } from "../../store/todoSlice";
+import { markComplete, markFavourite, remove, ToDo } from "../../store/todoSlice";
 import Checkbox from "../Checkbox/Checkbox";
 import React, { useState } from "react";
 import AddTodo from "../AddTodo/AddTodo";
 import TimeAgo from 'react-timeago'
 
-const Display = () => {
-    const todoList = useAppSelector((state) => state.todos.list);
+const Display = ({ list = [] }: { list: Array<ToDo> }) => {
     const dispatch = useAppDispatch();
     const [editMode, setEditMode] = useState('');
     const [showDescription, setShowDescription] = useState('');
@@ -21,7 +20,7 @@ const Display = () => {
     }
     return (
         <TransitionGroup component="div" className={classes.todoList}>
-            {todoList.map((el) => {
+            {list.map((el) => {
                 return (
                     <CSSTransition
                         mountOnEnter

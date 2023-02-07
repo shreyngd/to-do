@@ -1,9 +1,12 @@
 import AddTodo from '../../components/AddTodo/AddTodo';
 import Display from '../../components/Display/Display';
+import { useAppSelector } from '../../store/hooks';
 import { useGreeting } from '../../utils';
 import classes from './Dashboard.module.scss';
 
 const Dashboard: React.FC = () => {
+    const todoList = useAppSelector((state) => state.todos.list);
+
     const greetMsg = useGreeting();
     return <div className={classes.appDashboard}>
         <div className={classes.container}>
@@ -18,7 +21,7 @@ const Dashboard: React.FC = () => {
                 <AddTodo></AddTodo>
             </div>
             <div>
-                <Display />
+                <Display list={todoList} />
             </div>
         </div>
 

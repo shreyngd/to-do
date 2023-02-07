@@ -88,6 +88,7 @@
           color: inherit;
           outline: none;
           cursor: pointer;
+          transition: transform 200ms;
           &.rotate {
             transform: rotate(180deg);
             transition: transform 200ms;

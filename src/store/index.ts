@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import todoReducer from './todoSlice'
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
+import searchReducer from './searchSlice';
 
 const persistConfig = {
     key: 'root',
@@ -10,6 +11,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     todos: todoReducer,
+    search: searchReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

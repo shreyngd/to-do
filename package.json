@@ -58,6 +58,7 @@
     "react-modern-drawer": "^1.2.0",
     "react-redux": "^8.0.5",
     "react-refresh": "^0.11.0",
+    "react-router-dom": "^6.8.1",
     "react-timeago": "^7.1.0",
     "react-transition-group": "^4.4.5",
     "redux-persist": "^6.0.0",
