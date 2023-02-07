@@ -57,12 +57,15 @@ const Display = ({ list = [] }: { list: Array<ToDo> }) => {
                                     </div>
                                     <div className={classes.optionsMain}>
 
+                                        <div className={classes.markBtnMain}>
+                                            <ChipButton
+                                                value="Mark as favourite"
+                                                onClick={() => {
+                                                    dispatch(markFavourite(el.id))
+                                                }} selected={el.isFavourite}
+                                            ></ChipButton>
+                                        </div>
 
-                                        <ChipButton
-                                            value="Mark as favourite"
-                                            onClick={() => {
-                                                dispatch(markFavourite(el.id))
-                                            }} selected={el.isFavourite}></ChipButton>
                                         <Checkbox checked={el.isComplete} onChange={() => onCompleteClick(el.id)}></Checkbox>
                                         <button className={classNames(classes.btn, classes.removeBtn)} onClick={() => dispatch(remove(el.id))}><i className="fas fa-trash"></i></button>
                                         <button className={classNames(classes.btn, classes.removeBtn)} onClick={() => setEditMode(el.id)}><i className="fas fa-pen"></i></button>

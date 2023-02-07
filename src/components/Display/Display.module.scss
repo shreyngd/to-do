@@ -69,6 +69,7 @@
         align-items: center;
         gap: 8px;
         position: relative;
+        flex: 1;
         .strike {
           border-radius: 2px;
           background-color: var(--color-solid);
@@ -77,11 +78,20 @@
           font-size: 14px;
           line-height: 19px;
           font-weight: bold;
+          word-break: break-word;
         }
       }
       .optionsMain {
         display: flex;
         gap: 8px;
+        align-items: center;
+        flex: 1;
+        justify-content: flex-end;
+        .markBtnMain {
+          @media screen and (max-width: 630px) {
+            display: none;
+          }
+        }
         .btn {
           border: none;
           background: none;

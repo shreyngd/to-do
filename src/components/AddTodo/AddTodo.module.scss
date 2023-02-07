@@ -29,13 +29,15 @@
     gap: 8px;
   }
   .addTodoBoxSecondary {
-    height: 0;
+    max-height: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: height 0.1s ease-in;
+    transition: max-height 0.1s ease-in;
+    border-radius: 8px;
     &.fullHeight {
-      height: 160px;
+      height: auto;
+      max-height: 500px;
     }
   }
   .textAreaContainer {
@@ -63,6 +65,11 @@
     justify-content: space-between;
     background-color: var(--color-surface);
     align-items: center;
+    @media screen and (max-width: 630px) {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 12px;
+    }
     .dueText {
       font-size: 14px;
       line-height: 19px;
@@ -71,10 +78,17 @@
     .dueTime {
       display: flex;
       gap: 8px;
+      @media screen and (max-width: 630px) {
+        gap: 4px;
+        flex-direction: column;
+      }
     }
     .timeChips {
       display: flex;
       gap: 4px;
+      @media screen and (max-width: 630px) {
+        flex-wrap: wrap;
+      }
     }
   }
 }

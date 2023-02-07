@@ -49,8 +49,7 @@ const AddTodo = ({ editMode = false, todoObject, updateDone = () => { } }: ToDoP
                 endTime = todoObject?.endTime || Date.now()
             }
             if (editMode && selectTime && todoObject && todoObject.endTime) {
-                endTime = todoObject.endTime + selectTime.time
-
+                endTime = Date.now() + selectTime.time
             }
             const newTodo: ToDo = {
                 id: editMode && todoObject ? todoObject.id : v4(),
@@ -119,7 +118,7 @@ const AddTodo = ({ editMode = false, todoObject, updateDone = () => { } }: ToDoP
                     </div>
                     <div className={classes.options}>
                         <div className={classes.dueTime}>
-                            <div className={classes.dueText}>{editMode ? 'Add Time:' : 'Due in:'}</div>
+                            <div className={classes.dueText}>Due Time:</div>
                             <div className={classes.timeChips}>{DUE_TIME_LIST.map(el => (
                                 <ChipButton value={el.text} onClick={() => handleTimeSelect(el)} key={el.text} selected={selectTime?.text === el.text} />
                             ))}</div>
