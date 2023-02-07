@@ -70,6 +70,20 @@
       flex-direction: column;
       gap: 12px;
     }
+    .saveBtn {
+      .btn {
+        border: 1px solid var(--color-solid);
+        border-radius: 8px;
+        background: none;
+        color: inherit;
+        outline: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: 14px;
+        font-weight: bold;
+        letter-spacing: 0.3px;
+      }
+    }
     .dueText {
       font-size: 14px;
       line-height: 19px;

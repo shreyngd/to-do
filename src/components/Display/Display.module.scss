@@ -70,15 +70,16 @@
         gap: 8px;
         position: relative;
         flex: 1;
-        .strike {
-          border-radius: 2px;
-          background-color: var(--color-solid);
-        }
+
         .titleText {
           font-size: 14px;
           line-height: 19px;
           font-weight: bold;
           word-break: break-word;
+          &.strike {
+            text-decoration: line-through;
+            color: var(--color-placeholder);
+          }
         }
       }
       .optionsMain {
@@ -110,6 +111,12 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 200ms ease-out;
+      .markBtnMainMobile {
+        display: none;
+        @media screen and (max-width: 630px) {
+          display: block;
+        }
+      }
       .main {
         display: flex;
         flex-direction: column;

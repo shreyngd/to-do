@@ -39,20 +39,8 @@ const Display = ({ list = [] }: { list: Array<ToDo> }) => {
                                 <div className={classes.info}>
                                     <div className={classes.titleMain}>
                                         <Priority priority={el.priority} star={el.isFavourite}></Priority>
-                                        <div className={classes.titleText}>
+                                        <div className={classNames(classes.titleText, { [classes.strike]: el.isComplete })}>
                                             <div>{el.title || "(Untitled)"}</div>
-                                            <CSSTransition
-                                                in={el.isComplete}
-                                                timeout={400}
-                                                classNames={{
-                                                    enter: classes.strikeThroughEnter,
-                                                    enterActive: classes.strikeThroughEnterActive,
-                                                    enterDone: classes.strikeThroughEnterDone,
-                                                    exit: classes.strikeThroughExit,
-                                                    exitActive: classes.strikeThroughExitActive,
-                                                }}>
-                                                <div className={classes.strike}></div>
-                                            </CSSTransition>
                                         </div>
                                     </div>
                                     <div className={classes.optionsMain}>
@@ -84,10 +72,18 @@ const Display = ({ list = [] }: { list: Array<ToDo> }) => {
                                             {el.description ? <div>{el.description}</div> : <div className={classes.empty}>Description not added</div>}
                                         </div>
                                         <div className={classes.endTime}>
-                                            {el.endTime && <>
+                                            {el.endTime && !el.isComplete && <>
                                                 <div>{Date.now() < el.endTime ? 'Ends in:' : 'Ended'}</div>
                                                 <TimeAgo date={el.endTime} />
                                             </>}
+                                        </div>
+                                        <div className={classes.markBtnMainMobile}>
+                                            <ChipButton
+                                                value="Mark as favourite"
+                                                onClick={() => {
+                                                    dispatch(markFavourite(el.id))
+                                                }} selected={el.isFavourite}
+                                            ></ChipButton>
                                         </div>
                                     </div>
 
