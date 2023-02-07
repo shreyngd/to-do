@@ -95,7 +95,6 @@ const AddTodo = ({ editMode = false, todoObject, updateDone = () => { } }: ToDoP
     }
 
     const handleTimeSelect = (dueTimeObj: DueTimeObj) => {
-        console.log(dueTimeObj)
         if (selectTime && selectTime.text === dueTimeObj.text) {
             setSelectTime(null);
         } else {
