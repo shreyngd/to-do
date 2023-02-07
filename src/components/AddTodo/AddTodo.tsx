@@ -125,8 +125,10 @@ const AddTodo = ({ editMode = false, todoObject, updateDone = () => { } }: ToDoP
                         </div>
                         <div><ColorPicker changeColor={(color: PriorityObj | null) => setColorLabel(color)} selected={colorLabel} /></div>
                         <div className={classes.saveBtn}><button className={classes.btn} onClick={() => {
-                            setshow(false)
                             addTodo()
+                            setTimeout(() => {
+                                setshow(false)
+                            }, 200)
                         }}>Save</button></div>
                     </div>
                 </div>

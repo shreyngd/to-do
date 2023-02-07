@@ -1,37 +1,38 @@
-
-.toggleContainer{
-    margin-right: 20px;
+.toggleContainer {
+  margin-right: 20px;
 }
-  .checkbox {
-    opacity: 0;
-    position: absolute;
-    
-    &:checked + .label .ball{
-        transform: translateX(20px);
-      }
+.checkbox {
+  opacity: 0;
+  position: absolute;
+
+  &:checked + .label .ball {
+    transform: translateX(20px);
   }
-  
-  .label {
-    width: 40px;
-    height: 20px;
-    background-color:#111;
-    display: flex;
-    border-radius:50px;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    position: relative;
-    transform: scale(1.5);
+}
+
+.label {
+  width: 40px;
+  height: 20px;
+  background-color: #111;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+  .icon {
+    font-size: 12px;
   }
-  
-  .ball {
-    width: 16px;
-    height: 16px;
-    background-color: white;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    border-radius: 50%;
-    transition: transform 0.2s linear;
-  }
-    
+}
+
+.ball {
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}

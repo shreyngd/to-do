@@ -1,22 +1,20 @@
 import classNames from 'classnames'
-import { memo, useEffect, useState } from 'react'
+import { memo } from 'react'
 import { Priority } from '../../utils'
 import classes from './Priority.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 const PriorityStar = ({ priority, star }: { priority: Priority | null | undefined, star: boolean }) => {
 
-    const [update, setUpdate] = useState(String(star));
-
-    useEffect(() => {
-        setUpdate(String(star))
-    }, [star])
 
 
 
     return <div className={classNames(classes.prioAnim)}>
-        <div className={classNames(classes.circle, classes[priority || 'default'])}>
+        <div className={classNames(classes.circle, classes[priority || 'default'], { [classes.active]: star, [classes.inactive]: !star, [classes.animActive]: star })}>
             <div className={classNames(classes.star, classes[priority || 'default'])}>
-                <div className={classNames("fas fa-star", { [classes.active]: star, [classes.inactive]: !star, [classes.animActive]: update === 'true' })}></div>
+                <FontAwesomeIcon icon={faStar} className={classNames({ [classes.active]: star, [classes.inactive]: !star, [classes.animActive]: star }, classes.startDef)}></FontAwesomeIcon>
+
             </div>
         </div>
     </div>

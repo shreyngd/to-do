@@ -2,6 +2,9 @@ import Display from '../../components/Display/Display';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { change, clear } from '../../store/searchSlice';
 import classes from './Search.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+
 
 const Search: React.FC = () => {
     const search = useAppSelector(state => state.search.value);
@@ -15,11 +18,15 @@ const Search: React.FC = () => {
             </div>
             <div className={classes.addContianer}>
                 <div className={classes.inputContainer}>
-                    <div className={classes.search} ><div className='fas fa-magnifying-glass' style={{ fontSize: '16px' }}></div></div>
+                    <div className={classes.search} >
+                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{ fontSize: '16px' }}></FontAwesomeIcon>
+                    </div>
                     <input className={classes.input} placeholder="Search by name or description" value={search} onChange={(e) => dispatch(change(e.target.value))}></input>
                     <div className={classes.search} onClick={(e) => {
                         dispatch(clear())
-                    }}><div className="fa-solid fa-circle-xmark" style={{ fontSize: '16px', cursor: 'pointer' }} ></div></div>
+                    }}>
+                        <FontAwesomeIcon icon={faCircleXmark} style={{ fontSize: '16px', cursor: 'pointer' }}></FontAwesomeIcon>
+                    </div>
 
                 </div>
             </div>

@@ -5,6 +5,8 @@ import classNames from "classnames";
 import Priority from "../Priority/Priority";
 import ChipButton from "../ChipButton/ChipButton";
 import { markComplete, markFavourite, remove, ToDo } from "../../store/todoSlice";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faPen, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import Checkbox from "../Checkbox/Checkbox";
 import React, { useState } from "react";
 import AddTodo from "../AddTodo/AddTodo";
@@ -55,13 +57,13 @@ const Display = ({ list = [] }: { list: Array<ToDo> }) => {
                                         </div>
 
                                         <Checkbox checked={el.isComplete} onChange={() => onCompleteClick(el.id)}></Checkbox>
-                                        <button className={classNames(classes.btn, classes.removeBtn)} onClick={() => dispatch(remove(el.id))}><i className="fas fa-trash"></i></button>
-                                        <button className={classNames(classes.btn, classes.removeBtn)} onClick={() => setEditMode(el.id)}><i className="fas fa-pen"></i></button>
+                                        <button className={classNames(classes.btn, classes.removeBtn)} onClick={() => dispatch(remove(el.id))}><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></button>
+                                        <button className={classNames(classes.btn, classes.removeBtn)} onClick={() => setEditMode(el.id)}><FontAwesomeIcon icon={faPen}></FontAwesomeIcon></button>
                                         <button className={classNames(classes.btn, classes.removeBtn, { [classes.rotate]: showDescription === el.id })} onClick={() => {
                                             if (showDescription === el.id) setShowDescription('')
                                             else setShowDescription(el.id)
                                         }}>
-                                            <i className="fas fa-chevron-down"></i>
+                                            <FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon>
                                         </button>
 
                                     </div>
