@@ -1,19 +1,22 @@
 import classNames from 'classnames'
-import { memo } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { Priority } from '../../utils'
 import classes from './Priority.module.scss'
 
 const PriorityStar = ({ priority, star }: { priority: Priority | null | undefined, star: boolean }) => {
-    let obj: any = {}
-    if (priority) {
-        obj[classes[priority]] = true
-    } else {
-        obj[classes.default] = true;
-    }
+
+    const [update, setUpdate] = useState(String(star));
+
+    useEffect(() => {
+        setUpdate(String(star))
+    }, [star])
+
+
+
     return <div className={classNames(classes.prioAnim)}>
-        <div className={classNames(classes.circle, obj)}>
-            <div className={classNames(classes.star, obj)}>
-                <div className={classNames("fas fa-star", { [classes.animActive]: star, [classes.animInactive]: !star })}></div>
+        <div className={classNames(classes.circle, classes[priority || 'default'])}>
+            <div className={classNames(classes.star, classes[priority || 'default'])}>
+                <div className={classNames("fas fa-star", { [classes.active]: star, [classes.inactive]: !star, [classes.animActive]: update === 'true' })}></div>
             </div>
         </div>
     </div>
@@ -21,3 +24,5 @@ const PriorityStar = ({ priority, star }: { priority: Priority | null | undefine
 }
 
 export default memo(PriorityStar)
+
+//, [classes.animInactive]: update === 'false'
