@@ -11,8 +11,8 @@ const initialState: Search = {
 }
 
 
-export const todoSlice = createSlice({
-    name: 'todoList',
+export const searchSlice = createSlice({
+    name: 'search',
     initialState,
     reducers: {
         change: (state, action: PayloadAction<string>) => {
@@ -26,6 +26,6 @@ export const todoSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { clear, change } = todoSlice.actions
+export const { clear, change } = searchSlice.actions
 
-export default todoSlice.reducer
+export default searchSlice.reducer

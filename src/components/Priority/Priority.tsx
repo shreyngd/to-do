@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { memo, useState } from 'react'
+import { memo } from 'react'
 import { Priority } from '../../utils'
 import classes from './Priority.module.scss'
 
