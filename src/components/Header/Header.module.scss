@@ -12,10 +12,66 @@
   .routes {
   }
   .search {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    .themeToggle {
+      position: relative;
+    }
   }
 }
 
 .appDrawer {
   background-color: var(--color-surface) !important;
   top: 60px !important;
+}
+
+.searchLink {
+  margin-left: 16px;
+  color: var(--color-solid);
+  display: flex;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  align-items: flex-end;
+  padding: 10px;
+}
+.activeSearch {
+  margin-left: 16px;
+  color: var(--color-solid);
+  display: flex;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  align-items: flex-end;
+  background-color: var(--color-active-link);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.homeLink {
+  margin-left: 16px;
+  color: var(--color-solid);
+  display: flex;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  align-items: flex-end;
+  padding: 10px;
+}
+.activeHome {
+  margin-left: 16px;
+  color: var(--color-solid);
+  display: flex;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: var(--color-active-link);
+  align-items: flex-end;
+  border-radius: 8px;
+  padding: 10px;
 }

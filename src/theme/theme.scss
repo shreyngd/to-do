@@ -8,6 +8,7 @@
   --color-placeholder: rgba(255, 255, 255, 0.9);
   --color-border-priority: #a142f4;
   --color-circle: #fafafa;
+  --color-active-link: #41331c;
 }
 
 html[data-theme="light"] {
@@ -20,6 +21,7 @@ html[data-theme="light"] {
   --color-placeholder: rgba(0, 0, 0, 0.6);
   --color-border-priority: #a142f4;
   --color-circle: #121212;
+  --color-active-link: #feefc3;
 }
 
 html[data-theme="dark"] {
@@ -33,4 +35,5 @@ html[data-theme="dark"] {
   --color-border-priority: #a142f4;
   --color-filter-img: none;
   --color-circle: #fafafa;
+  --color-active-link: #41331c;
 }
