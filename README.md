@@ -21,7 +21,7 @@ Techs Used
     npm install
     npm start
 
-//OR
+OR
 
     yarn install
     yarn start
